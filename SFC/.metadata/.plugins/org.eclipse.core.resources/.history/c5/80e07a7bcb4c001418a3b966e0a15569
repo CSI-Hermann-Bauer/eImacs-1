@@ -1,0 +1,126 @@
+import java.util.Scanner;
+import java.util.Random;
+/**
+ * 
+ */
+
+/**
+ * @author Andrew
+ *
+ */
+public class ConnectFour {
+	private static final char player1 = 'X';
+	private static final char player2 = 'Y';
+	private static char player;
+	private static char board [] [] = new char [7][6]; //7 Wide, 6 long;
+	private Scanner userIn;
+	private Random rand;
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new ConnectFour();
+	}
+	public ConnectFour(){
+		userIn = new Scanner(System.in);
+		rand = new Random();
+		//Populate board
+		fillBoard();
+		printBoard();
+		//Randomly choose player
+		while((!(playerWins(player1)||playerWins(player2))||!boardFull())){
+			/* Output board
+			 * Switch Player
+			 * Get input from player
+			 * Check if legal
+			 * Insert into board
+			 */
+			printBoard(); //Print Board
+			switchPlayer(); //Switch Player
+			int playerChoice = askPlayer(); //Save player choice
+			while(!legal(playerChoice)){//check legal
+				playerChoice = askPlayer();
+			}
+			makeMove(playerChoice); //insert
+			
+		}
+		if(boardFull()){
+			//Stalemate
+		} else if(playerWins(player1)){
+			//Player 1 Wins!
+		} else if(playerWins(player2)){
+			//Player 2 Wins!
+		} else {
+			//Should _NOT_ reach here!
+		}
+	}
+	public boolean boardFull(){
+		//TODO: Write
+		return false;
+	}
+	public boolean checkRowWin(char player){
+		//TODO: Write
+		return false;
+	}
+	public boolean checkColWin(char player){
+		//TODO: Write
+		return false;
+	}
+	public boolean checkDiagWin1(char player){
+		//TODO: Write
+		return false;
+	}
+	public boolean checkDiagWin2(char player){
+		//TODO: Write
+		return false;
+	}
+	public boolean playerWins(char player){
+		return (checkRowWin(player) || checkColWin(player) || checkDiagWin1(player) || checkDiagWin2(player));
+	}
+	public void fillBoard()	{
+		for(int i = 0; i < board.length; i++){
+			for(int j = 0; j < board[i].length; j++){
+				board[i][j] = ' ';
+			}
+		}
+	}
+	public void printBoard(){
+		for(int i = 0; i < board.length; i++){
+			System.out.print(i+1+"\t");
+		}
+		System.out.println();
+		for(char[] arr : board){
+			for(char c:arr){
+				System.out.print((char)c+""+(char)'\t');
+			}
+			System.out.println();
+		}
+		for(int i = 0; i < board[board.length-1].length*8; i++){
+			System.out.print('-');
+		}
+		System.out.println();
+	}
+	public boolean legal(int move){
+		//TODO Write!
+		return move >= 0 && move < board.length && board[0][move-1] == ' ';
+	}
+	public void makeMove(int move){
+		int i = 0;
+		while(i < board[0].length && board[i][move] == ' '){
+			i++;
+		}
+		board[i-1][move] = player;
+	}
+	public void switchPlayer(){
+		if(player == player1){
+			player = player2;
+		}else{
+			player = player1;
+		}
+	}
+	public int askPlayer(){
+		System.out.print("Player " + player+", which colum would you like to move to?>");
+		return userIn.nextInt()-1;
+	}
+}
