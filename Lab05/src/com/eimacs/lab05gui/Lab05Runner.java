@@ -10,6 +10,7 @@ import com.eimacs.lab05.*;
  */
 public class Lab05Runner
 {
+	private static TurtleWindow theTurtleWindow;
     /**
      * The main method
      * 
@@ -25,13 +26,7 @@ public class Lab05Runner
         //UserInfoDialog dlg = new UserInfoDialog( null, true );
         //dlg.setLocationRelativeTo( null );
         //dlg.setVisible( true );
-
-        TurtleProgram tp = new TurtleProgram();
-        tp.addAction( new TurnRight( 120 ) );
-        tp.addAction( new MoveForward( 100 ) );
-        tp.addAction( new MoveBack( 50 ) );
-        tp.addAction( new TurnLeft( 90 ) );
-        System.out.println( tp );
+    	theTurtleWindow = new TurtleWindow();
     }
     
 }
