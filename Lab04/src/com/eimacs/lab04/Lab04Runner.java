@@ -67,11 +67,16 @@ public class Lab04Runner {
 		// dlg.setLocationRelativeTo( null );
 		// dlg.setVisible( true );
 
-		ArrayList<Footwear> catalog = makeCatalog(10);
-		BinItem a = new BinItem("1234-3", 500);
-		BinItem b = new BinItem("9999-9", 2400);
-		System.out.println(lookupFootwear(catalog, a.getSKU()));
-		System.out.println(lookupFootwear(catalog, b.getSKU()));
+		Warehouse w = new Warehouse( 10 ); 
+		Footwear d0 = new DressShoe( "Loafer", 10.5, "1234-13" ); 
+		Footwear b = new Boot( "Riding", 8, "1234-5" ); 
+		Footwear c = new CasualShoe( "Sandal", 9.5, "1234-0" ); 
+		Footwear d1 = new DressShoe( "Wing-tip", 10, "1234-3" ); 
+		w.receive( d0, 4 ); 
+		w.receive( b, 25 ); 
+		w.receive( c, 18 ); 
+		w.receive( d1, 5 ); 
+		System.out.println( w );
 	}
 
 }
