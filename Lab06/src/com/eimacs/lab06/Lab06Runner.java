@@ -22,8 +22,8 @@ public class Lab06Runner
 //        dlg.setLocationRelativeTo( null );
 //        dlg.setVisible( true );
 
-        Picture p = new Picture( "beach.jpg" );
-        p.explore();
+    	Picture pix = new Picture( "temple.jpg" );
+    	pix.explore();
     }
     
 }

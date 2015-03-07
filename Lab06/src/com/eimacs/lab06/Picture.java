@@ -98,7 +98,57 @@ public class Picture extends SimplePicture
             }
         }
     }
+    /**
+     * fixUnderwater
+     */
+    public void fixUnderwater()
+    {
+        Pixel[][] pixels = getPixels2D();
+        for (Pixel[] rowArray : pixels)
+        {
+            for (Pixel pixelObj : rowArray)
+            {
+                pixelObj.setRed(pixelObj.getRed() * 5);
+            }
+        }
+    }
+    /**
+     * negate
+     */
 
+    public void negate()
+    {
+        Pixel[][] pixels = getPixels2D();
+        for (Pixel[] rowArray : pixels)
+        {
+            for (Pixel pixelObj : rowArray)
+            {
+                pixelObj.setBlue(255 - pixelObj.getBlue());
+                pixelObj.setRed(255 - pixelObj.getRed());
+                pixelObj.setGreen(255 - pixelObj.getGreen());
+                
+            }
+        }
+    }
+    
+    /**
+     * grayscale
+     */
+    
+    public void grayscale(){
+        Pixel[][] pixels = getPixels2D();
+        for (Pixel[] rowArray : pixels)
+        {
+            for (Pixel pixelObj : rowArray)
+            {
+            	int avg = (int)Math.round(pixelObj.getAverage());
+                pixelObj.setBlue(avg);
+                pixelObj.setRed(avg);
+                pixelObj.setGreen(avg);
+                
+            }
+        }
+    }
     /**
      * Method that mirrors the left half of a picture onto the
      * right half as though reflecting in a mirror placed on 
@@ -119,6 +169,43 @@ public class Picture extends SimplePicture
             }
         }
     }
-    
-    
+    public void mirrorTopOntoBottom(){
+    	 Pixel[][] pixels = getPixels2D();
+         Pixel leftPixel, rightPixel;
+         int width = pixels[0].length;
+         for (int col = 0; col < width; col++)
+         {
+             for (int row = 0; row < pixels.length / 2; row++)
+             {
+                 leftPixel = pixels[row][col];
+                 rightPixel = pixels[pixels.length - 1 - row][col];
+                 rightPixel.setColor(leftPixel.getColor());
+             }
+         }
+    }
+    public void flipLeftAndRight()
+    {
+        Pixel[][] pixels = getPixels2D();
+        Pixel leftPixel, rightPixel;
+        int width = pixels[0].length;
+        for (int row = 0; row < pixels.length; row++)
+        {
+            for (int col = 0; col < width / 2; col++)
+            {
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][(width - 1) - col];
+                Color c = rightPixel.getColor();
+                rightPixel.setColor(leftPixel.getColor());
+                leftPixel.setColor(c);
+            }
+        }
+    }
+    public void fixTemple(){
+    	int apexCol = 292;
+    	int endCopy = 289;
+    	int	startRow = 33;
+    	int endRow = 137;
+    	int lastPixL = 29;
+    	int lastPixR = 560;
+    }
 } // this } is the end of class Picture, put all new methods before this
