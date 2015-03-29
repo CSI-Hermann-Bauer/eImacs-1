@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * @author College Board Developers
  * @version 1.0 May 18, 2012
  */
-public class MyCardGameGUI extends JFrame implements ActionListener
+public class CardGameGUI extends JFrame implements ActionListener
 {
 
     /**
@@ -148,7 +148,7 @@ public class MyCardGameGUI extends JFrame implements ActionListener
      *
      * @param gameBoard is a <code>Board</code> subclass.
      */
-    public MyCardGameGUI(Board gameBoard)
+    public CardGameGUI(Board gameBoard)
     {
         board = gameBoard;
         totalWins = 0;

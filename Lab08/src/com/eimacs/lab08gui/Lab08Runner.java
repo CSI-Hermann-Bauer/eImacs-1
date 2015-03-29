@@ -1,7 +1,7 @@
 package com.eimacs.lab08gui;
 
-import com.eimacs.elevens.*;
-//import com.eimacs.lab08.*;
+//import com.eimacs.elevens.*;
+import com.eimacs.lab08.*;
 
 /**
  * 
@@ -14,8 +14,8 @@ public class Lab08Runner
     public static void main( String[] args )
     {
         /* Play the game */
-        Board board = new ElevensBoard();
-        CardGameGUI gui = new CardGameGUI(board);
-        gui.displayGame();
+    	Board board = new ElevensBoard();
+    	CardGameGUI gui = new CardGameGUI(board);
+    	gui.displayGame();
     }
 }

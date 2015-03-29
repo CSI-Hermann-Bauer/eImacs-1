@@ -201,17 +201,60 @@ public class Picture extends SimplePicture {
 	}
 
 	public void cloneSeagull() {
-		int startRow = 230, startCol = 234, endRow = 347, endCol = 496,  offSet;
+		int startRow = 230, startCol = 234, endRow = 347, endCol = 496, offSet;
 		Pixel[][] pixels = getPixels2D();
 		Pixel leftPixel, rightPixel;
 		int width = pixels[0].length;
 		for (int row = startRow; row < endRow; row++) {
 			for (int col = 0; col < endCol - startCol; col++) {
 				leftPixel = pixels[row][endCol - col];
-				rightPixel = pixels[row+10][width - 1 - col];
+				rightPixel = pixels[row + 10][width - 1 - col];
 				rightPixel.setColor(leftPixel.getColor());
 			}
 		}
+	}
+
+	public void edgeDetect(int minColorDistance) {
+		Pixel[][] pixels = getPixels2D();
+		Pixel current, rightPixel, downPixel;
+		int width = pixels[0].length;
+		int rowMax = pixels.length - 1;
+		int colMax = (width) - 1;
+		for (int row = 0; row <= rowMax; row++) {
+			for (int col = 0; col <= colMax; col++) {
+				current = pixels[row][col];
+				rightPixel = current;
+				downPixel = current;
+				if (col != colMax)
+					rightPixel = pixels[row][col + 1];
+				if (row != rowMax)
+					downPixel = pixels[row + 1][col];
+				Color rightColor, downColor, currentColor;
+				rightColor = rightPixel.getColor();
+				downColor = downPixel.getColor();
+				currentColor = current.getColor();
+				Color c = colorDistance(currentColor, rightColor,
+						minColorDistance)
+						|| colorDistance(currentColor, downColor,
+								minColorDistance) ? Color.BLACK : Color.WHITE;
+				current.setColor(c);
+			}
+		}
+	}
+
+	private boolean colorDistance(Color a, Color b, int minColorDistance) {
+		int[] aCol = { a.getRed(), a.getGreen(), a.getBlue() };
+		int[] bCol = { b.getRed(), b.getGreen(), b.getBlue() };
+		int[] diff = new int[3];
+		for (int i = 0; i < diff.length; i++) {
+			diff[i] = Math.abs(aCol[i] - bCol[i]);
+		}
+		for (int x : diff) {
+			if (x > minColorDistance) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 } // this } is the end of class Picture, put all new methods before this
