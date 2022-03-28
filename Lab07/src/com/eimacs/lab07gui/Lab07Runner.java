@@ -46,6 +46,29 @@ public class Lab07Runner {
 	}
 
 	public static void main(String[] args) {
-		tester = new TestingInterface();
-	}
-}
+		//tester = new TestingInterface();
+		// final int NTESTS = 100;
+		// final int ARRSIZE = 10000;
+
+		// ArrayList<ArrayList<Integer>> a = arrayListOfArrayLists( NTESTS, ARRSIZE, -1 );
+		// APTimer timer = new APTimer();
+		// //Sort s = new SelectionSort();
+		//  Sort s = new InsertionSort();
+		//  //Sort s = new MergeSort();
+
+		// timer.start();
+		// for ( ArrayList<Integer> aList : a )
+		// s.sortList( aList );
+		// timer.stop();
+
+		// System.out.println( "Average time to sort an ArrayList of size " + ARRSIZE +
+		// 					": " + (timer.interval() / (double)NTESTS) + " ms." );
+		ArrayList<String> arrList = new ArrayList<String>();
+arrList.add("A");
+arrList.add("B");
+arrList.add("C");
+arrList.add("D");
+for (int i = 0; i < arrList.size(); i++)
+{
+System.out.print(arrList.remove(i));
+}}}
